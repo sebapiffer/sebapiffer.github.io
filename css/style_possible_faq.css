@@ -1,0 +1,57 @@
+/* ===================================================================
+   MODULO: FAQ / DOMANDE FREQUENTI
+   =================================================================== */
+#faq-showcase-wrapper { width: 100%; max-width: 760px; }
+
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { background: #12141c; border: 1px solid #1f2330; border-radius: 10px; overflow: hidden; opacity: 0; }
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    color: #edf2f7;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    padding: 0 20px;
+    color: #a0aec0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+.faq-item.open .faq-answer { max-height: 200px; padding: 0 20px 18px 20px; }
+.faq-icon { color: var(--color-accent); font-size: 1.1rem; transition: transform 0.3s ease; flex-shrink: 0; margin-left: 14px; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+/* Variante 3: Tabs categoria */
+.faq-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.faq-tab {
+    background: #12141c;
+    border: 1px solid #2d3748;
+    color: #a0aec0;
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.faq-tab.active { background: var(--color-accent); color: #0b0c10; border-color: var(--color-accent); }
+
+/* Variante 4: Ricerca */
+.faq-search-box { position: relative; margin-bottom: 20px; }
+.faq-search-box input {
+    width: 100%;
+    background: #1a1d28;
+    border: 1px solid #2d3748;
+    border-radius: 30px;
+    padding: 13px 20px;
+    color: #fff;
+    outline: none;
+    font-size: 0.9rem;
+}
+.faq-search-box input:focus { border-color: var(--color-accent); }
+.faq-no-results { text-align: center; color: #4a5568; font-size: 0.85rem; padding: 20px; display: none; }

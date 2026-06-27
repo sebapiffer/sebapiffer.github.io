@@ -1,0 +1,176 @@
+/* ===================================================================
+   MODULO: GALLERIA FOTO
+   =================================================================== */
+#gallery-showcase-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.gallery-tile {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    border: 1px solid #1f2330;
+    transition: transform 0.3s ease;
+}
+.gallery-tile:hover { transform: translateY(-3px); }
+
+.gallery-tile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.65) 100%);
+    z-index: 1;
+}
+
+.gallery-tile-label {
+    position: relative;
+    z-index: 2;
+    padding: 14px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Palette di sfondo placeholder — da sostituire con le foto reali del locale */
+.tile-amber    { background: linear-gradient(135deg, #6b4a23, #2b1b0a); }
+.tile-wine     { background: linear-gradient(135deg, #5c1f2b, #220a10); }
+.tile-charcoal { background: linear-gradient(135deg, #3a3f4d, #14161d); }
+.tile-olive    { background: linear-gradient(135deg, #4a4a25, #1c1c0c); }
+.tile-espresso { background: linear-gradient(135deg, #3e2a1c, #160e08); }
+.tile-gold     { background: linear-gradient(135deg, #6e5326, #221a0c); }
+
+/* Variante 1: Masonry + Lightbox */
+.gallery-masonry {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 90px;
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+}
+.gallery-masonry .gallery-tile:nth-child(1) { grid-row: span 3; grid-column: span 2; }
+.gallery-masonry .gallery-tile:nth-child(2) { grid-row: span 2; }
+.gallery-masonry .gallery-tile:nth-child(3) { grid-row: span 2; }
+.gallery-masonry .gallery-tile:nth-child(4) { grid-row: span 2; grid-column: span 2; }
+.gallery-masonry .gallery-tile:nth-child(5) { grid-row: span 3; }
+.gallery-masonry .gallery-tile:nth-child(6) { grid-row: span 3; }
+
+.gallery-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 6, 9, 0.85);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gallery-lightbox-tile {
+    width: 480px;
+    height: 320px;
+    border-radius: 16px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -42px;
+    right: 0;
+    background: none;
+    border: 1px solid #4a5568;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+/* Variante 2: Carosello 3D (Coverflow) */
+.gallery-coverflow-stage {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    perspective: 1200px;
+}
+.coverflow-tile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 260px;
+    height: 280px;
+    margin: -140px 0 0 -130px;
+}
+.gallery-coverflow-nav {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 26px;
+}
+
+/* Variante 3: Filmstrip Infinito (Marquee) */
+.gallery-marquee-viewport {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.gallery-marquee-viewport::before,
+.gallery-marquee-viewport::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 3;
+}
+.gallery-marquee-viewport::before { left: 0; background: linear-gradient(90deg, #0b0c10, transparent); }
+.gallery-marquee-viewport::after { right: 0; background: linear-gradient(270deg, #0b0c10, transparent); }
+.gallery-marquee-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+}
+.gallery-marquee-track .gallery-tile {
+    width: 200px;
+    height: 240px;
+    flex-shrink: 0;
+}
+
+/* Variante 4: Griglia con Filtro Categoria */
+.gallery-filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+.filter-pill {
+    background: #12141c;
+    border: 1px solid #2d3748;
+    color: #a0aec0;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.filter-pill.active { background: var(--color-accent); color: #0b0c10; border-color: var(--color-accent); }
+.gallery-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 900px;
+}
+.gallery-filter-grid .gallery-tile { height: 140px; }

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showcase Clienti - Concept Locale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style_core.css">
+    <link rel="stylesheet" href="css/style_possible_preloader.css">
+    <link rel="stylesheet" href="css/style_possible_navbar.css">
+    <link rel="stylesheet" href="css/style_possible_title.css">
+    <link rel="stylesheet" href="css/style_possible_hero.css">
+    <link rel="stylesheet" href="css/style_possible_menu.css">
+    <link rel="stylesheet" href="css/style_possible_chef.css">
+    <link rel="stylesheet" href="css/style_possible_gallery.css">
+    <link rel="stylesheet" href="css/style_possible_about.css">
+    <link rel="stylesheet" href="css/style_possible_events.css">
+    <link rel="stylesheet" href="css/style_possible_booking.css">
+    <link rel="stylesheet" href="css/style_possible_reviews.css">
+    <link rel="stylesheet" href="css/style_possible_faq.css">
+    <link rel="stylesheet" href="css/style_possible_contact.css">
+</head>
+<body>
+
+    <div class="control-panel">
+        <div class="panel-header">
+            <h3>Showcase Live</h3>
+            <p>Seleziona il modulo da mostrare:</p>
+        </div>
+
+        <div class="customizer-box">
+            <p class="group-label">Personalizza il Locale:</p>
+            <div class="field-elegant" style="margin-bottom:14px;">
+                <input type="text" id="customizer-name-input" placeholder=" " value="The Lounge" oninput="updateBrandName(this.value)">
+                <label>Nome del Locale</label>
+            </div>
+            <div class="field-elegant" style="margin-bottom:4px;">
+                <input type="text" id="customizer-tagline-input" placeholder=" " value="Bistrot & Cocktail Bar" oninput="updateTagline(this.value)">
+                <label>Slogan / Sottotitolo</label>
+            </div>
+
+            <p class="customizer-label">Font del Sito:</p>
+            <select id="customizer-font-select" class="customizer-select" onchange="applyFontPairing(this.value)">
+                <option value="elegante">Elegante Classico (Playfair + Montserrat)</option>
+                <option value="minimal">Moderno Minimal (Poppins + Inter)</option>
+                <option value="boutique">Boutique Chic (Cormorant + Lato)</option>
+                <option value="bold">Contemporaneo Bold (Fraunces + Work Sans)</option>
+                <option value="artigianale">Artigianale Caldo (Abril Fatface + Nunito)</option>
+            </select>
+
+            <p class="customizer-label">Colore Accento:</p>
+            <div class="customizer-swatches" id="customizer-swatches">
+                <button class="swatch active" style="--swatch-color:#e5c07b;" onclick="applyAccentColor('#e5c07b', this)" title="Oro Notte"></button>
+                <button class="swatch" style="--swatch-color:#c2654f;" onclick="applyAccentColor('#c2654f', this)" title="Bordeaux Vintage"></button>
+                <button class="swatch" style="--swatch-color:#8aa17a;" onclick="applyAccentColor('#8aa17a', this)" title="Verde Salvia"></button>
+                <button class="swatch" style="--swatch-color:#6b9ac4;" onclick="applyAccentColor('#6b9ac4', this)" title="Blu Mediterraneo"></button>
+                <button class="swatch" style="--swatch-color:#d99a9a;" onclick="applyAccentColor('#d99a9a', this)" title="Rosa Cipria"></button>
+                <button class="swatch" style="--swatch-color:#c97b4a;" onclick="applyAccentColor('#c97b4a', this)" title="Rame Caldo"></button>
+                <label class="swatch swatch-custom" title="Colore personalizzato">
+                    <input type="color" id="customizer-color-input" value="#e5c07b" oninput="applyAccentColor(this.value, this.parentElement)">
+                </label>
+            </div>
+        </div>
+
+        <div class="macro-switcher">
+            <button id="tab-btn-preloader" class="macro-btn active" onclick="switchModule('preloader')">1. Preloader</button>
+            <button id="tab-btn-navbar" class="macro-btn" onclick="switchModule('navbar')">2. Navbar</button>
+            <button id="tab-btn-title" class="macro-btn" onclick="switchModule('title')">3. Loghi</button>
+            <button id="tab-btn-hero" class="macro-btn" onclick="switchModule('hero')">4. Hero</button>
+            <button id="tab-btn-menu" class="macro-btn" onclick="switchModule('menu')">5. Menù</button>
+            <button id="tab-btn-chef" class="macro-btn" onclick="switchModule('chef')">6. Chef</button>
+            <button id="tab-btn-gallery" class="macro-btn" onclick="switchModule('gallery')">7. Galleria</button>
+            <button id="tab-btn-about" class="macro-btn" onclick="switchModule('about')">8. Storia</button>
+            <button id="tab-btn-events" class="macro-btn" onclick="switchModule('events')">9. Eventi</button>
+            <button id="tab-btn-booking" class="macro-btn" onclick="switchModule('booking')">10. Booking</button>
+            <button id="tab-btn-reviews" class="macro-btn" onclick="switchModule('reviews')">11. Recensioni</button>
+            <button id="tab-btn-faq" class="macro-btn" onclick="switchModule('faq')">12. FAQ</button>
+            <button id="tab-btn-contact" class="macro-btn" onclick="switchModule('contact')">13. Contatti</button>
+        </div>
+
+        <hr class="panel-divider">
+
+        <div id="controls-preloader" class="controls-group">
+            <p class="group-label">Seleziona Stile Schermata di Caricamento:</p>
+            <button onclick="triggerPreloaderAnim(1)">1. Logo Reveal Minimal</button>
+            <button onclick="triggerPreloaderAnim(2)">2. Progress Bar Elegante (Count-Up)</button>
+            <button onclick="triggerPreloaderAnim(3)" style="border-color: #e5c07b; font-weight: 600;">3. Sipario di Caricamento ⚡</button>
+            <button onclick="triggerPreloaderAnim(4)">4. Piatto & Fumo (Steam Loading)</button>
+        </div>
+
+        <div id="controls-navbar" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Navbar:</p>
+            <button onclick="triggerNavbarAnim(1)">1. Classic Sticky (Shrink on Scroll)</button>
+            <button onclick="triggerNavbarAnim(2)">2. Mega Menu Dropdown</button>
+            <button onclick="triggerNavbarAnim(3)" style="border-color: #e5c07b; font-weight: 600;">3. Hamburger Fullscreen ⚡</button>
+            <button onclick="triggerNavbarAnim(4)">4. Pill Floating Navigation</button>
+        </div>
+
+        <div id="controls-title" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Animazione Logo:</p>
+            <button onclick="triggerTitleAnim(1)">1. Elegante (Fade & Scale)</button>
+            <button onclick="triggerTitleAnim(2)">2. Lettera per Lettera (Stagger)</button>
+            <button onclick="triggerTitleAnim(3)">3. Minimal Moderno (Mask Slide)</button>
+            <button onclick="triggerTitleAnim(4)">4. Cinema Focus (Blur & Track)</button>
+            <button onclick="triggerTitleAnim(5)">5. Dinamico Pop (Rotate Out)</button>
+            <button onclick="triggerTitleAnim(6)">6. Insegna Neon (Flicker Night)</button>
+            <button onclick="triggerTitleAnim(7)">7. Split Immediato (Top/Down)</button>
+        </div>
+
+        <div id="controls-hero" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Hero Header:</p>
+            <button onclick="triggerHeroAnim(1)">1. Parallax Ken Burns (Glow CTA)</button>
+            <button onclick="triggerHeroAnim(2)" style="border-color: #e5c07b; font-weight: 600;">2. Sipario che si Apre (Curtain) ⚡</button>
+            <button onclick="triggerHeroAnim(3)">3. Atmosfera Fumo (Particles Rising)</button>
+            <button onclick="triggerHeroAnim(4)">4. Aurora Notturna (Gradient Animato)</button>
+        </div>
+
+        <div id="controls-menu" class="controls-group hidden">
+            <p class="group-label">Seleziona Layout/Animazione Menù:</p>
+            <button onclick="triggerMenuAnim(1)">1. Accordion Cascata (Sleek Expand)</button>
+            <button onclick="triggerMenuAnim(2)">2. Grid Stagger Cards (Pop In)</button>
+            <button onclick="triggerMenuAnim(3)">3. Side Overlay Sheet (Sliding)</button>
+            <button onclick="triggerMenuAnim(4)">4. Tab Cinematic Focus (Blur Swapping)</button>
+            <button onclick="triggerMenuAnim(5)">5. Minimal List Reveal (Slide-Left)</button>
+            <button onclick="thoughtfulMenuAnim(6)">6. Neon Glow Card (Flicker Menu)</button>
+            <button onclick="triggerMenuAnim(7)">7. Editorial Magazine (Split Panel)</button>
+            <button onclick="triggerMenuAnim(8)" style="border-color: #e5c07b; font-weight: 600;">8. Prospettiva 3D (Origami Unfold) ⚡</button>
+            <button onclick="triggerMenuAnim(9)">9. Bento Grid Asimmetrico (Mosaic)</button>
+        </div>
+
+        <div id="controls-chef" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Chef & Team:</p>
+            <button onclick="triggerChefAnim(1)">1. Spotlight Singolo (Chef in Evidenza)</button>
+            <button onclick="triggerChefAnim(2)">2. Team Grid Cards (Click to Flip)</button>
+            <button onclick="triggerChefAnim(3)">3. Carosello Membri (Slide)</button>
+            <button onclick="triggerChefAnim(4)" style="border-color: #e5c07b; font-weight: 600;">4. Credentials Timeline ⚡</button>
+        </div>
+
+        <div id="controls-gallery" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Galleria Foto:</p>
+            <button onclick="triggerGalleryAnim(1)">1. Masonry + Lightbox (Hover Zoom)</button>
+            <button onclick="triggerGalleryAnim(2)" style="border-color: #e5c07b; font-weight: 600;">2. Carosello 3D (Coverflow) ⚡</button>
+            <button onclick="triggerGalleryAnim(3)">3. Filmstrip Infinito (Marquee Scroll)</button>
+            <button onclick="triggerGalleryAnim(4)">4. Griglia con Filtro (Stagger Reveal)</button>
+        </div>
+
+        <div id="controls-about" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Chi Siamo / Storia:</p>
+            <button onclick="triggerAboutAnim(1)" style="border-color: #e5c07b; font-weight: 600;">1. Timeline Verticale (Scroll Reveal) ⚡</button>
+            <button onclick="triggerAboutAnim(2)">2. Split Image/Testo (Slide-in)</button>
+            <button onclick="triggerAboutAnim(3)">3. Citazione Typewriter (Macchina da Scrivere)</button>
+            <button onclick="triggerAboutAnim(4)">4. Storytelling a Strati (Parallax Layers)</button>
+        </div>
+
+        <div id="controls-events" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Eventi & Serate:</p>
+            <button onclick="triggerEventsAnim(1)">1. Card Eventi Stagione</button>
+            <button onclick="triggerEventsAnim(2)">2. Calendario Eventi Interattivo</button>
+            <button onclick="triggerEventsAnim(3)" style="border-color: #e5c07b; font-weight: 600;">3. Countdown Prossimo Evento ⚡</button>
+            <button onclick="triggerEventsAnim(4)">4. Slider Eventi Full-bleed</button>
+        </div>
+
+        <div id="controls-booking" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Prenotazione Tavolo:</p>
+            <button onclick="triggerBookingAnim(1)">1. Form Elegante (Floating Label)</button>
+            <button onclick="triggerBookingAnim(2)">2. Wizard Multi-Step (3 Passaggi)</button>
+            <button onclick="triggerBookingAnim(3)">3. Calendario Animato (Date Picker)</button>
+            <button onclick="triggerBookingAnim(4)" style="border-color: #e5c07b; font-weight: 600;">4. Conferma con Coriandoli (Success) ⚡</button>
+        </div>
+
+        <div id="controls-reviews" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Recensioni:</p>
+            <button onclick="triggerReviewsAnim(1)">1. Carosello Auto (Slide Centrale)</button>
+            <button onclick="triggerReviewsAnim(2)">2. Marquee Infinito (Scroll Continuo)</button>
+            <button onclick="triggerReviewsAnim(3)">3. Punteggio Hero (Count-Up + Stelle)</button>
+            <button onclick="triggerReviewsAnim(4)" style="border-color: #e5c07b; font-weight: 600;">4. Stack Swipe (Carte 3D) ⚡</button>
+        </div>
+
+        <div id="controls-faq" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile FAQ:</p>
+            <button onclick="triggerFaqAnim(1)">1. Accordion Classico (Uno alla volta)</button>
+            <button onclick="triggerFaqAnim(2)">2. Accordion Libero (Più Aperti)</button>
+            <button onclick="triggerFaqAnim(3)">3. Due Colonne Categorie (Tabs)</button>
+            <button onclick="triggerFaqAnim(4)" style="border-color: #e5c07b; font-weight: 600;">4. Ricerca & Filtro Live ⚡</button>
+        </div>
+
+        <div id="controls-contact" class="controls-group hidden">
+            <p class="group-label">Seleziona Stile Contatti / Footer:</p>
+            <button onclick="triggerContactAnim(1)" style="border-color: #e5c07b; font-weight: 600;">1. Mappa & Pin Animato (Drop & Pulse) ⚡</button>
+            <button onclick="triggerContactAnim(2)">2. Orari Live (Badge Aperto/Chiuso)</button>
+            <button onclick="triggerContactAnim(3)">3. Social Magnetici (Hover Playful)</button>
+            <button onclick="triggerContactAnim(4)">4. Newsletter (Success Inline)</button>
+        </div>
+    </div>
+
+    <div class="preview-viewport">
+
+        <div id="viewport-preloader" class="view-container">
+            <div id="preloader-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-navbar" class="view-container hidden">
+            <div id="navbar-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-title" class="view-container hidden">
+            <div class="logo-wrapper">
+                <div class="logo-icon"></div>
+            </div>
+            <h1 class="brand-title" id="animated-title">THE LOUNGE</h1>
+            <p class="brand-subtitle">BISTROT & COCKTAIL BAR</p>
+        </div>
+
+        <div id="viewport-hero" class="view-container hidden">
+            <div id="hero-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-menu" class="view-container hidden">
+            <div id="menu-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-chef" class="view-container hidden">
+            <div id="chef-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-gallery" class="view-container hidden">
+            <div id="gallery-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-about" class="view-container hidden">
+            <div id="about-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-events" class="view-container hidden">
+            <div id="events-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-booking" class="view-container hidden">
+            <div id="booking-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-reviews" class="view-container hidden">
+            <div id="reviews-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-faq" class="view-container hidden">
+            <div id="faq-showcase-wrapper"></div>
+        </div>
+
+        <div id="viewport-contact" class="view-container hidden">
+            <div id="contact-showcase-wrapper"></div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="js/customizer.js"></script>
+
+    <script src="js/script_possible_preloader.js"></script>
+    <script src="js/script_possible_navbar.js"></script>
+    <script src="js/script_possible_title.js"></script>
+    <script src="js/script_possible_hero.js"></script>
+    <script src="js/script_possible_menu.js"></script>
+    <script src="js/script_possible_chef.js"></script>
+    <script src="js/script_possible_gallery.js"></script>
+    <script src="js/script_possible_about.js"></script>
+    <script src="js/script_possible_events.js"></script>
+    <script src="js/script_possible_booking.js"></script>
+    <script src="js/script_possible_reviews.js"></script>
+    <script src="js/script_possible_faq.js"></script>
+    <script src="js/script_possible_contact.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

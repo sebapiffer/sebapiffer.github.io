@@ -1,0 +1,328 @@
+:root {
+    --color-accent: #e5c07b;
+    --color-accent-rgb: 229, 192, 123;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b0c10;
+    color: #ffffff;
+    font-family: var(--font-body);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #2d3748 #12141c;
+}
+
+/* Scrollbar elegante coerente col tema dark (Webkit) */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #12141c; }
+::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* Sidebar di controllo principale */
+.control-panel {
+    width: 340px;
+    background-color: #12141c;
+    border-right: 1px solid #1f2330;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    box-shadow: 8px 0 25px rgba(0,0,0,0.4);
+}
+
+.panel-header h3 {
+    font-family: var(--font-display);
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.panel-header p {
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+/* Macro Switcher tra le sezioni del sito (strip orizzontale scrollabile) */
+.macro-switcher {
+    display: flex;
+    gap: 6px;
+    background-color: #1a1d28;
+    padding: 4px;
+    border-radius: 8px;
+    margin-top: 20px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+}
+
+.macro-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    background: none;
+    border: none;
+    color: #a0aec0;
+    padding: 9px 13px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.macro-btn.active {
+    background-color: var(--color-accent);
+    color: #0b0c10;
+}
+
+.panel-divider {
+    border: 0;
+    height: 1px;
+    background: #1f2330;
+    margin: 20px 0;
+}
+
+/* Gruppi Bottoni */
+.controls-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.group-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #4a5568;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.controls-group button {
+    background-color: #1a1d28;
+    color: #edf2f7;
+    border: 1px solid #2d3748;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.85rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.controls-group button:hover {
+    background-color: #242938;
+    border-color: var(--color-accent);
+    transform: translateX(4px);
+}
+
+/* Viewport Area (Destra) */
+.preview-viewport {
+    flex: 1;
+    position: relative;
+    background: radial-gradient(circle at center, #171923 0%, #0b0c10 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.view-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===================================================================
+   PANNELLO DI PERSONALIZZAZIONE — nome locale, font, colore accento
+   =================================================================== */
+.customizer-box {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid #1f2330;
+    flex-shrink: 0;
+}
+.customizer-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #718096;
+    margin: 16px 0 8px 0;
+}
+.customizer-select {
+    width: 100%;
+    background: #1a1d28;
+    border: 1px solid #2d3748;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+.customizer-select:focus { border-color: var(--color-accent); }
+
+.customizer-swatches { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
+.swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--swatch-color);
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s ease;
+}
+.swatch:hover { transform: scale(1.12); }
+.swatch.active {
+    border-color: #0b0c10;
+    box-shadow: 0 0 0 2px var(--swatch-color);
+}
+.swatch-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        conic-gradient(from 90deg at 1px 1px,#0b0c10 90deg,#1a1d28 0) 0 0/10px 10px;
+    position: relative;
+}
+.swatch-custom input[type="color"] {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+}
+
+/* ===================================================================
+   UTILITY CONDIVISE — riusate dai moduli aggiuntivi (Hero, Galleria,
+   Chi Siamo, Prenotazione, Recensioni, Contatti)
+   =================================================================== */
+
+.btn-gold {
+    background: var(--color-accent);
+    color: #0b0c10;
+    border: none;
+    font-weight: 600;
+    padding: 13px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(var(--color-accent-rgb), 0.25);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: #edf2f7;
+    border: 1px solid #2d3748;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+.btn-ghost:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+/* Bottone rotondo per navigazione carosello/coverflow (riusato in più moduli) */
+.nav-arrow-btn {
+    background: #12141c;
+    border: 1px solid #2d3748;
+    color: #fff;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+.nav-arrow-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+/* Campo form con etichetta flottante elegante (Prenotazione, Newsletter...) */
+.field-elegant {
+    position: relative;
+    margin-bottom: 22px;
+}
+.field-elegant input,
+.field-elegant select {
+    width: 100%;
+    background: #1a1d28;
+    border: 1px solid #2d3748;
+    border-radius: 8px;
+    padding: 18px 14px 8px 14px;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.25s ease;
+}
+.field-elegant input:focus,
+.field-elegant select:focus {
+    border-color: var(--color-accent);
+}
+.field-elegant label {
+    position: absolute;
+    left: 14px;
+    top: 16px;
+    color: #718096;
+    font-size: 0.85rem;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+.field-elegant input:focus + label,
+.field-elegant input:not(:placeholder-shown) + label {
+    top: 4px;
+    font-size: 0.65rem;
+    color: var(--color-accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Etichetta piccola usata sopra blocchi di contenuto dentro i moduli (riuso group-label) */
+.module-caption {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #4a5568;
+    text-align: center;
+    margin-top: 14px;
+}
+
+.brand-caps { text-transform: uppercase; }

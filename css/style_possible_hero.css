@@ -1,0 +1,115 @@
+/* ===================================================================
+   MODULO: HERO HEADER
+   =================================================================== */
+#hero-showcase-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: -10%;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(var(--color-accent-rgb), 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 75% 70%, rgba(120, 60, 20, 0.25) 0%, transparent 50%),
+        linear-gradient(160deg, #1a1208 0%, #0b0c10 65%);
+}
+
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 40%, #0b0c10 100%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 0 40px;
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-size: 0.78rem;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: 3.3rem;
+    line-height: 1.15;
+    margin-bottom: 16px;
+}
+
+.hero-sub {
+    color: #a0aec0;
+    font-size: 1rem;
+    margin-bottom: 32px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Variante 2: Sipario (Curtain Reveal) */
+.curtain-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(180deg, #15171f, #0b0c10);
+    z-index: 6;
+}
+.curtain-left { left: 0; border-right: 1px solid var(--color-accent); }
+.curtain-right { right: 0; border-left: 1px solid var(--color-accent); }
+.curtain-emblem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    z-index: 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+}
+
+/* Variante 3: Atmosfera Fumo (Particles) */
+.particle {
+    position: absolute;
+    bottom: -10%;
+    border-radius: 50%;
+    background: rgba(var(--color-accent-rgb), 0.45);
+    filter: blur(1px);
+    pointer-events: none;
+}
+
+/* Variante 4: Aurora Notturna */
+.aurora-bg {
+    position: absolute;
+    inset: -30%;
+    background: conic-gradient(from 0deg, #1a1208, #2c1f0c, #0b0c10, #241804, #1a1208);
+    filter: blur(70px);
+    opacity: 0.9;
+}

@@ -1,0 +1,114 @@
+/* ===================================================================
+   MODULO: PRENOTAZIONE TAVOLO
+   =================================================================== */
+#booking-showcase-wrapper {
+    width: 100%;
+    max-width: 480px;
+}
+
+.booking-card {
+    background: #12141c;
+    border: 1px solid #1f2330;
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+.booking-card h2 {
+    font-family: var(--font-display);
+    color: #fff;
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.field-row { display: flex; gap: 14px; }
+.field-row .field-elegant { flex: 1; }
+
+/* Variante 2: Wizard Multi-Step */
+.wizard-progress { display: flex; gap: 6px; margin-bottom: 28px; }
+.wizard-progress-step {
+    flex: 1;
+    height: 4px;
+    background: #2d3748;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.wizard-progress-fill { height: 100%; width: 0%; background: var(--color-accent); }
+.wizard-panels { position: relative; min-height: 220px; overflow: hidden; }
+.wizard-panel { position: absolute; width: 100%; top: 0; left: 0; }
+.wizard-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+.wizard-option {
+    background: #1a1d28;
+    border: 1px solid #2d3748;
+    color: #edf2f7;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+.wizard-option.selected, .wizard-option:hover { border-color: var(--color-accent); }
+.wizard-nav { display: flex; justify-content: space-between; margin-top: 18px; }
+
+/* Variante 3: Calendario Animato */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 20px;
+}
+.calendar-day-label { text-align: center; font-size: 0.7rem; color: #4a5568; text-transform: uppercase; }
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1d28;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #edf2f7;
+    cursor: pointer;
+    transform: scale(0);
+}
+.calendar-day.disabled { color: #2d3748; cursor: default; background: transparent; }
+.calendar-day.selected { background: var(--color-accent); color: #0b0c10; font-weight: 700; }
+.time-slots { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.time-slot {
+    background: #1a1d28;
+    border: 1px solid #2d3748;
+    color: #a0aec0;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0;
+}
+.time-slot.selected { background: var(--color-accent); color: #0b0c10; border-color: var(--color-accent); }
+
+/* Variante 4: Conferma con Coriandoli */
+.success-box { text-align: center; padding: 20px 0; position: relative; }
+.success-check-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 22px auto;
+}
+.success-check-circle svg { width: 46px; height: 46px; }
+.success-check-circle path {
+    stroke: var(--color-accent);
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+}
+.confetti-piece {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: 50%;
+    left: 50%;
+}

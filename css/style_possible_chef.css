@@ -1,0 +1,91 @@
+/* ===================================================================
+   MODULO: CHEF & TEAM
+   =================================================================== */
+#chef-showcase-wrapper { width: 100%; max-width: 900px; }
+
+/* Variante 1: Spotlight Singolo */
+.chef-spotlight { display: flex; gap: 50px; align-items: center; }
+.chef-portrait {
+    width: 220px;
+    height: 280px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #3e2a1c, #14161d);
+    position: relative;
+    flex-shrink: 0;
+}
+.chef-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(var(--color-accent-rgb), 0.18), transparent 60%);
+}
+.chef-spotlight-info h2 { font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 4px; }
+.chef-spotlight-info .chef-role { color: var(--color-accent); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.chef-spotlight-info p.chef-bio { color: #a0aec0; line-height: 1.7; font-size: 0.92rem; font-style: italic; }
+
+/* Variante 2: Team Grid Cards */
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.team-card {
+    background: #12141c;
+    border: 1px solid #1f2330;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.team-card-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 0 auto 14px auto;
+    background: linear-gradient(135deg, #6b4a23, #2b1b0a);
+}
+.team-card strong { color: #fff; font-size: 0.9rem; display: block; }
+.team-card span { color: #718096; font-size: 0.75rem; }
+.team-card-bio {
+    color: #a0aec0;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.team-card.flipped .team-card-bio { max-height: 100px; opacity: 1; margin-top: 10px; }
+
+/* Variante 3: Carosello Membri */
+.chef-carousel-stage { position: relative; min-height: 220px; display: flex; justify-content: center; }
+.chef-carousel-card {
+    background: #12141c;
+    border: 1px solid #1f2330;
+    border-radius: 14px;
+    padding: 26px;
+    text-align: center;
+    width: 280px;
+    position: absolute;
+}
+.chef-carousel-nav { display: flex; justify-content: center; gap: 16px; margin-top: 240px; }
+
+/* Variante 4: Credentials Timeline */
+.chef-timeline { position: relative; padding-left: 30px; }
+.chef-timeline-line {
+    position: absolute;
+    left: 4px;
+    top: 0;
+    width: 2px;
+    height: 0%;
+    background: linear-gradient(180deg, var(--color-accent), #2d3748);
+}
+.chef-timeline-row { position: relative; margin-bottom: 28px; }
+.chef-timeline-node {
+    position: absolute;
+    left: -26px;
+    top: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    transform: scale(0);
+}
+.chef-timeline-row strong { color: var(--color-accent); font-size: 0.95rem; }
+.chef-timeline-row p { color: #a0aec0; font-size: 0.85rem; margin-top: 4px; }
